@@ -1,0 +1,26 @@
+{% extends "base_simple.html" %}
+{% block title %}Appointments{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Appointments</h2>
+  <a class="btn btn-primary" href="{{ url_for('add_appointment') }}">Add Appointment</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr><th>#</th><th>Patient</th><th>Date/Time</th><th>Reason</th></tr>
+  </thead>
+  <tbody>
+    {% for a in appointments %}
+    <tr>
+      <td>{{ a.id }}</td>
+      <td>{{ a.patient.first_name }} {{ a.patient.last_name }}</td>
+      <td>{{ a.datetime }}</td>
+      <td>{{ a.reason }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No appointments yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base_simple.html" %}
+{% block title %}Add Appointment{% endblock %}
+{% block content %}
+<h2>Add Appointment</h2>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Patient</label>
+    <select class="form-select" name="patient_id" required>
+      <option value="">-- choose patient --</option>
+      {% for p in patients %}
+      <option value="{{ p.id }}">{{ p.first_name }} {{ p.last_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date & Time</label>
+    <input class="form-control" name="datetime" placeholder="YYYY-MM-DD HH:MM">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Reason</label>
+    <input class="form-control" name="reason">
+  </div>
+  <button class="btn btn-primary">Save</button>
+  <a href="{{ url_for('appointments') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
